@@ -8,8 +8,9 @@ html(lang="ru")
 	body
 		include ../components/_page-header
 
-		main.main(id='#{page}')
+		main.main
 			block content
+			include _content
 
 		include ../components/_page-footer
 

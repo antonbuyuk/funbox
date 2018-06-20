@@ -29,18 +29,18 @@ var path = {
 	src: {
 		pug: 'src/pug/**/[^_]*.pug',
 		css: 'src/less/styles.less',
-		js: 'src/js/*',
+		js: 'src/js/main.js',
 		image: 'src/img/**/*',
 		fonts: 'src/fonts/**/*',
 		json: 'src/json/*',
 		htaccess: 'src/.htaccess'
 	},
 	watch: {
-		pug: 'src/includes/*',
-		css: 'src/assets/less/*',
-		js: 'src/assets/js/*',
-		image: 'src/assets/img/*/*',
-		fonts: 'src/assets/fonts/*/*',
+		pug: 'src/pug/**/*.pug',
+		css: 'src/less/**/*',
+		js: 'src/js/main.js',
+		image: 'src/img/*/*',
+		fonts: 'src/fonts/*/*',
 		htaccess: 'src/.htaccess',
 	},
 	clean: './build',
@@ -63,6 +63,7 @@ gulp.task('pug:build', function() {
 
 gulp.task('css:build', function(){
   return gulp.src([
+    ('src/js/jquery/jquery-3.3.1.js'),
 	(path.src.css)
 	])
     .pipe(less())
@@ -77,7 +78,8 @@ gulp.task('css:build', function(){
 
 gulp.task('js:build', function(){
   return gulp.src([
-	(path.src.js),
+    './src/js/partials/jquery-3.3.1.js',
+    './src/js/main.js'
 	])
     .pipe(concat('app.min.js'))
     .pipe(uglify())
