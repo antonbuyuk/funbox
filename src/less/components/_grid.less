@@ -1,0 +1,32 @@
+body{
+	display: flex;
+    flex-direction: column;
+}
+
+main{
+	margin-bottom: auto;
+}
+
+.row{
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	max-width: 71.875rem;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 1rem;
+	justify-content: space-between;
+
+	@media (max-width: 67.5rem){
+		justify-content: center;
+	}
+}
+
+.col{
+	position: relative;
+	width: 100%;
+	max-width: 20rem;
+	margin: 0 1rem;
+	margin-bottom: 1.875rem;
+}
