@@ -23,6 +23,7 @@ var path = {
 		html: 'build/',
 		css: 'build/templates/_ares/css/',
 		js: 'build/templates/_ares/js/',
+        json: 'build/templates/_ares/data/',
 		fonts: 'build/templates/_ares/fonts/',
 		image: 'build/templates/_ares/img/'
 	},
@@ -32,15 +33,16 @@ var path = {
 		js: 'src/js/main.js',
 		image: 'src/img/**/*',
 		fonts: 'src/fonts/**/*',
-		json: 'src/json/*',
+		json: 'src/data/cards.json',
 		htaccess: 'src/.htaccess'
 	},
 	watch: {
 		pug: 'src/pug/**/*.pug',
 		css: 'src/less/**/*',
 		js: 'src/js/main.js',
-		image: 'src/img/*/*',
-		fonts: 'src/fonts/*/*',
+        json: 'src/data/*',
+		image: 'src/img/**/*',
+		fonts: 'src/fonts/**/*',
 		htaccess: 'src/.htaccess',
 	},
 	clean: './build',
@@ -57,6 +59,11 @@ gulp.task('connect', function(){
 
 gulp.task('pug:build', function() {
   return gulp.src(path.src.pug)
+   .pipe(data( function(file) {
+                  return JSON.parse(
+                    fs.readFileSync(path.src.json)
+                  );
+                } ))
     .pipe(pug())
     .pipe(gulp.dest(path.build.html));
 });
@@ -84,6 +91,13 @@ gulp.task('js:build', function(){
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js))
+});
+
+gulp.task('json:build', function() {
+    return gulp.src(path.src.json)
+        .pipe(jsonMinify())
+        .pipe(gulp.dest(path.build.json))
+        .on('error', util.log);
 });
 
 gulp.task('image:build', function () {

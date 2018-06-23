@@ -7,6 +7,7 @@
 		background-image: url(../img/png/box.png);
 		background-position: center;
 		background-repeat: no-repeat;
+		background-size: contain;
 		border-radius: 0.5rem;
 		margin-bottom: 1rem;
 	}
@@ -15,13 +16,21 @@
 		pointer-events: none;
 		color: #fff;
 		font-size: 0.875rem;
-			text-align: center;
+		text-align: center;
 
 		a{
 			color: #1698d9;
 			border-bottom: 1px dashed #1698d9;
 			cursor: pointer;
 			pointer-events: all
+		}
+
+		&-selected{
+			pointer-events: none;
+			color: #fff;
+			font-size: 0.875rem;
+			text-align: center;
+			display: none;
 		}
 	}
 
@@ -100,10 +109,21 @@
 		}
 
 		&.card_hover{
-			background-image: url(../img/png/box-selected-hover.png);
+
+			.card_block{
+				background-image: url(../img/png/box-selected-hover.png);
+			}
 
 			.card_weight{
 				background-color: #e62e7a;
+			}
+		}
+
+		.card_footer{
+			display: none;
+
+			&-selected{
+				display: block;
 			}
 		}
 	}
