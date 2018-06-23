@@ -24,4 +24,15 @@ $(document).ready(function() {
 	}, function() {
 		$(this).removeClass('hover')
 	});
+
+	$('.card').each(function() {
+		var fillingCard = $(this).find('.card_title').children('small').text();
+			cardFua = 'Печень утки разварная с артишоками.'
+			cardFish = 'Головы щучьи с чесноком да свежайшая сёмгушка.'
+			cardChiken = 'Филе из цыплят с трюфелями в бульоне.'
+
+		if ($(this).hasClass('card_disabled')) {
+			$(this).children('.card_footer').text('Печалька, ' + fillingCard + ' закончился.');
+		}
+	});
 });

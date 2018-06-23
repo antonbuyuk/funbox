@@ -1,25 +1,25 @@
 .row
-	mixin card(filling, portion, present, done, weight)
+	mixin card(card)
 		.col
-			.card
+			.card(class=card.status)
 				.card_block
 					.card_pre Сказочное заморское яство
 					.card_title
 						| Нямушка
 						br
-						small= filling
-					.card_portion= portion
+						small= card.filling
+					.card_portion= card.portion
 						|  порций
 						br
-						=present
+						=card.present
 						br
-						=done
-					.card_weight= weight
+						=card.done
+					.card_weight= card.weight
 						small  кг
 				.card_footer
 					| Чего сидишь? Порадуй котэ, 
 					a купи
 					| .
-	+card('с фуа-гра', '10', 'мышь в подарок', '', '0,5', '')
-	+card('с рыбой', '40', '2 мыши в подарок', '', '2')
-	+card('с курой', '100', '5 мышей в подарок', 'заказчик доволен', '5')
+				.card_footer-selected=card.selectText
+	for card in cards
+		+card(card)
